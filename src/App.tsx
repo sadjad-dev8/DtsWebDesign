@@ -15,6 +15,8 @@ import { FinalCTASection } from './components/FinalCTASection';
 import { Footer } from './components/Footer';
 import { RFPModal } from './components/RFPModal';
 import { ContactModal } from './components/ContactModal';
+import { ProjectDetailModal } from './components/ProjectDetailModal';
+import { Project } from './types';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(
@@ -23,6 +25,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [isRFPModalOpen, setIsRFPModalOpen] = useState<boolean>(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
+  const [selectedHeroProject, setSelectedHeroProject] = useState<Project | null>(null);
 
   // Synchronize route state with browser history (back/forward buttons)
   useEffect(() => {
@@ -112,6 +115,7 @@ export default function App() {
               onExploreProjects={() => handleNavigate('projects')}
               onContactTeam={() => setIsContactModalOpen(true)}
               onStartProject={() => setIsRFPModalOpen(true)}
+              onSelectProject={(proj) => setSelectedHeroProject(proj)}
             />
 
             {/* 2. Company Overview */}
@@ -169,6 +173,16 @@ export default function App() {
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
+      />
+
+      {/* Interactive Project Case Study Modal from Hero */}
+      <ProjectDetailModal
+        project={selectedHeroProject}
+        onClose={() => setSelectedHeroProject(null)}
+        onOpenRFP={() => {
+          setSelectedHeroProject(null);
+          setIsRFPModalOpen(true);
+        }}
       />
     </div>
   );

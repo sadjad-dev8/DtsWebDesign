@@ -1,0 +1,6 @@
+{
+  "name": "Aegis Infrastructure",
+  "description": "National-scale software infrastructure, enterprise digital platforms, cloud technologies, and mission-critical systems for governments and large organizations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
